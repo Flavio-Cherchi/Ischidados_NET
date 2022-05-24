@@ -1,0 +1,159 @@
+﻿<%@ Master Language="C#" AutoEventWireup="True" CodeBehind="Masterpage.Master.cs" Inherits="Ischidados.Masterpage" %>
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <title>
+        <asp:Literal runat="server" ID="lbltitle"></asp:Literal></title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link href="../../assets/img/infrastructure/favicon3.ico" rel="shortcut icon" type="image/x-icon" />
+    <link href="../../Content/bootstrap.min.css" rel="stylesheet">
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" />
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
+
+    <link href="../../Content/chosen.css" rel="stylesheet">
+    <link href="../../Content/bootstrap-chosen.less" rel="stylesheet/less">
+    <link href="../../Content/Site.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/dt/dt-1.11.0/datatables.min.css" />
+
+
+    <script type="text/javascript" src="../../Scripts/jquery-3.6.0.min.js"></script>
+    <script type="text/javascript" src="../../Scripts/bootstrap.bundle.min.js"></script>
+    <script type="text/javascript" src="../../Scripts/chosen.jquery.js"></script>
+    <script type="text/javascript" src="https://cdn.datatables.net/1.11.0/js/jquery.dataTables.min.js"></script>
+
+    <script>
+        var config = {
+            '.chosen-select': {},
+            '.chosen-select-deselect': { allow_single_deselect: true },
+            '.chosen-select-no-single': { disable_search_threshold: 10 },
+            '.chosen-select-no-results': { no_results_text: 'Oops, nothing found!' },
+            '.chosen-select-width': { width: "95%" }
+        }
+        for (var selector in config) {
+            $(selector).chosen(config[selector]);
+        }
+    </script>
+
+    <asp:ContentPlaceHolder ID="HeadContent" runat="server">
+    </asp:ContentPlaceHolder>
+</head>
+
+<body class="fixed-sidebar">
+
+    <form id="FormMasterPage" runat="server" autocomplete="off">
+        <asp:ContentPlaceHolder ID="BreadcrumbContent" runat="server" />
+        <div id="wrapper">
+
+
+
+            <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+                <a class="navbar-brand hidden-xs" href="../../Default.aspx">
+                    <img class="animate__animated animate__zoomIn" src="../../Assets/img/infrastructure/favicon2.ico" width="30" height="30" alt="">
+                </a>
+                <ul class="navbar-nav mt-lg-0 hiddenOnlyInCell" runat="server" id="divMessageResponsive" visible="false">
+                    <li class="nav-item">
+                        <span style="display: inline;">
+                            <asp:LinkButton class="" runat="server" ID="LinkButton4" OnCommand="ProcessCommand" CommandName="toProfile" CommandArgument="toProfile">
+
+                                <asp:Image CssClass="rounded" runat="server" ID="imgUserResponsive" Width="30" Height="30" />
+
+                            </asp:LinkButton>
+
+                            <asp:LinkButton CssClass="thatsMyGrey" runat="server" ID="temp1" OnCommand="ProcessCommand" CommandName="message"><i runat="server" id="imgMessageResponsive" class="fa fa-envelope-o animate__animated" aria-hidden="true"></i></asp:LinkButton>
+                        </span>
+                    </li>
+                </ul>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggler" aria-controls="navbarToggler" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse textRespRight" id="navbarToggler">
+
+                    <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+                        <li class="nav-item ">
+                            <a runat="server" id="linkHome" class="nav-link" href="~/Default.aspx">Home</a>
+                        </li>
+                        <li class="nav-item ">
+                            <a runat="server" id="linkAdmin" class="nav-link" href="~/Core/Admin/adminPanel.aspx">Pannello admin</a>
+                        </li>
+                        <li class="nav-item ">
+                            <a runat="server" id="linkForum" class="nav-link" href="~/Core/Forum/forum.aspx">Forum</a>
+                        </li>
+                        <li class="nav-item ">
+                            <a runat="server" id="linkMyGames" class="nav-link" href="~/Core/Games/mygames.aspx">Le mie partite</a>
+                        </li>
+
+                        <li class="nav-item">
+                            <label class="nav-link d-none d-lg-block">| </label>
+                        </li>
+
+                        <li class="nav-item">
+                            <a runat="server" id="linkRegulation" class="nav-link" href="~/regulation.aspx">Regolamento</a>
+                        </li>
+                        <li class="nav-item">
+                            <a runat="server" id="linkAbout" class="nav-link" href="~/about.aspx">Cos'è Ischidados GdR?</a>
+                        </li>
+                        <li class="nav-item">
+                            <a runat="server" id="linkContacts" class="nav-link" href="~/contacts.aspx">Contatti</a>
+                        </li>
+                        <li class="nav-item dropdown rounded5 hiddenOnlyInCell">
+                            <asp:LinkButton class="nav-link" runat="server" ID="btnLogout" Text="Disconnettiti" data-toggle="modal" data-target="#logout" />
+                        </li>
+                    </ul>
+
+                    <ul class="navbar-nav  mt-2 mt-lg-0" runat="server" id="divLogin">
+                        <li class="nav-item">
+                            <asp:LinkButton class="nav-link" runat="server" ID="btnLogin" OnCommand="ProcessCommand" CommandName="toLogin" CommandArgument="toLogin" Text="Accedi" />
+                        </li>
+                        <li class="nav-item">
+                            <asp:LinkButton class="nav-link" runat="server" ID="btnRegister" OnCommand="ProcessCommand" CommandName="toRegister" CommandArgument="toRegister" Text="Registrati" />
+                        </li>
+                    </ul>
+                    <ul class="navbar-nav mt-2 mt-lg-0 showOnlyInCell" runat="server" id="divProfile" visible="false">
+                        <asp:LinkButton class="nav-link" runat="server" ID="LinkButton3" OnCommand="ProcessCommand" CommandName="toProfile" CommandArgument="toProfile">
+                            <asp:Image CssClass="rounded" runat="server" ID="imgUser" Width="30" Height="30" />
+                        </asp:LinkButton>
+                        <asp:LinkButton class="nav-link ml-n2" runat="server" ID="nameUser" OnCommand="ProcessCommand" CommandName="toProfile" CommandArgument="toProfile">
+                        </asp:LinkButton>
+                        <li class="nav-item">
+                            <asp:LinkButton class="nav-link" runat="server" ID="LinkButton1" OnCommand="ProcessCommand" CommandName="message"><i runat="server" id="imgMessage" aria-hidden="true"></i></asp:LinkButton>
+                        </li>
+                        <li class="nav-item">
+                            <asp:LinkButton class="nav-link" runat="server" ID="LinkButton2" Text="Disconnettiti" data-toggle="modal" data-target="#logout" />
+                        </li>
+                        <li class="nav-item"></li>
+                    </ul>
+                </div>
+            </nav>
+            <div class="modal fade" id="logout" tabindex="-1" role="dialog" aria-labelledby="deleteLabel" aria-hidden="true" style="margin-top: 73px;">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content" style="border-radius: 30%; background-color: transparent;">
+                        <div class="modal-body">
+                            <span style="float: left">
+                                <asp:ImageButton CssClass="img-fluid rounded5 degree45" runat="server" OnCommand="ProcessCommand" CommandName="logOut" ImageUrl="Assets/img/base/Zombie-go.png" ID="imgStop" />
+                            </span>
+                            <span style="float: right">
+                                <asp:ImageButton CssClass="img-fluid rounded5 degree45" runat="server" ID="imgDefault" ImageUrl="Assets/img/base/Zombie-stop.png" />
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Literally, whole app here-->
+            <asp:ContentPlaceHolder ID="MainContent" runat="server" />
+            <hr />
+            <footer class="">
+                <center>
+                    <p>&copy; <%: DateTime.Now.Year %> - Ischidados</p>
+                </center>
+            </footer>
+        </div>
+    </form>
+
+    <!--<p class="m-t"> <small>©<span id="lblYear">2021</span> Ischidados</small> </p>-->
+    <asp:ContentPlaceHolder ID="JSContent" runat="server" />
+</body>
+</html>

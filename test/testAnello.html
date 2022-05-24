@@ -1,0 +1,150 @@
+<style>
+
+#container{
+  position:absolute;
+  top:100px;
+  left:500px;
+	margin-right:100px;
+	-webkit-perspective: 800; 
+  -webkit-perspective-origin: 50% 100px;
+}
+#stage{
+	width:100%;
+	height:100%;
+	-webkit-transition: -webkit-transform 2s;
+    -webkit-transform-style: preserve-3d;
+}
+#shape {
+	width:50px;
+	height:50px;
+	position: relative;
+	-webkit-transform-style: preserve-3d;
+}
+.plane {
+  position: absolute;
+  height: 50px;
+  width: 50px;
+  border: 1px ridge #ffc107;
+  -webkit-border-radius: 10px;
+  -webkit-box-sizing: border-box;
+  text-align: center;
+  color:black;
+  font-size:30px;
+  background-color: #ffc107;
+  -webkit-transition: -webkit-transform 2s, opacity 2s;
+  -webkit-backface-visibility: hidden;
+}
+
+
+@-webkit-keyframes spinLeft {
+  from { -webkit-transform: rotateY(0); }
+  to   { -webkit-transform: rotateY(-360deg); }
+}
+
+@-webkit-keyframes spinRight {
+  from { -webkit-transform: rotateY(-360deg); }
+  to   { -webkit-transform: rotateY(0); }
+}
+
+.ring > .one {
+  -webkit-transform: rotateY(15deg) translateZ(90px);
+}
+
+.ring > .two {
+  -webkit-transform: rotateY(45deg) translateZ(90px);
+}
+
+.ring > .three {
+  -webkit-transform: rotateY(75deg) translateZ(90px);
+}
+
+.ring > .four {
+  -webkit-transform: rotateY(105deg) translateZ(90px);
+}
+
+.ring > .five {
+  -webkit-transform: rotateY(135deg) translateZ(90px);
+}
+
+.ring > .six {
+  -webkit-transform: rotateY(165deg) translateZ(90px);
+}
+
+.ring > .seven {
+  -webkit-transform: rotateY(195deg) translateZ(90px);
+}
+
+.ring > .eight {
+  -webkit-transform: rotateY(225deg) translateZ(90px);
+}
+
+.ring > .nine {
+  -webkit-transform: rotateY(-105deg) translateZ(90px);
+}
+
+.ring > .ten {
+  -webkit-transform: rotateY(-75deg) translateZ(90px);
+}
+
+.ring > .eleven {
+  -webkit-transform: rotateY(315deg) translateZ(90px);
+}
+
+.ring > .twelve {
+  -webkit-transform: rotateY(345deg) translateZ(90px);
+}
+
+.rotateLeft {
+  -webkit-animation: spinLeft 2s  linear;
+  
+}
+
+.rotateRight {
+  -webkit-animation: spinRight 2s  linear;
+  
+}
+
+body{
+    background-color: #000000;
+}
+
+</style>
+<body onmouseup="goOff()" ontouchend="goOff()" >
+<div id="container" >
+    <div id="stage">
+      <div id="shape" class="ring ">
+        <button onmousedown="goOnLeft()" ontouchstart="goOnLeft()" class="plane one"><b>+</b></button>
+        <button onmousedown="goOnLeft()" ontouchstart="goOnLeft()" class="plane two"><b>+</b></button>
+        <button onmousedown="goOnLeft()" ontouchstart="goOnLeft()" class="plane three"><b>+</b></button>
+        <button onmousedown="goOnLeft()" ontouchstart="goOnLeft()" class="plane four"><b>+</b></button>
+        <button onmousedown="goOnLeft()" ontouchstart="goOnLeft()" class="plane five"><b>+</b></button>
+        <button onmousedown="goOnLeft()" ontouchstart="goOnLeft()" class="plane six"><b>+</b></button>
+        <button onmousedown="goOnRight()" ontouchstart="goOnRight()" class="plane seven"><b>+</b></button>
+        <button onmousedown="goOnRight()" ontouchstart="goOnRight()" class="plane eight"><b>+</b></button>
+        <button onmousedown="goOnRight()" ontouchstart="goOnRight()" class="plane nine"><b>+</b></button>
+        <button onmousedown="goOnRight()" ontouchstart="goOnRight()" class="plane ten"><b>+</b></button>
+        <button onmousedown="goOnRight()" ontouchstart="goOnRight()" class="plane eleven"><b>+</b></button>
+        <button onmousedown="goOnRight()" ontouchstart="goOnRight()" class="plane twelve"><b>+</b></button>
+      </div>
+   </div>
+</div>
+
+<a href="https://stackoverflow.com/questions/31906318/onmousemove-onmousedown-to-call-function">Da vedere</a>
+</body>
+<script>
+
+var index = 1;
+
+function goOnLeft() {
+  document.getElementById('shape').className = 'ring rotateLeft';
+}
+
+function goOnRight() {
+  document.getElementById('shape').className = 'ring rotateRight';
+}
+
+function goOff() {
+  document.getElementById('shape').className = 'ring';
+  console.log("goofy");
+}
+</script>
